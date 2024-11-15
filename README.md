@@ -1,13 +1,14 @@
 # React + Vite
 
-Create a simple extension in google chrome
+Front-End Illuma
 
 run
 
 `npm install`
 
+`npm run dev`
+
 `npm run build`
 
-add folder `dist` in google chrome extension
-
-![alt text](./src/assets/exxtension.PNG)
+after: 
+chrome://extensions/ > carregar sem compactação > add pasta dict > select extension 
