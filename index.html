@@ -52,18 +52,23 @@
     </ul> -->
 
 
-    <div id="my-extension-div">
+    <div id="my-extension-div" class="divChatbot">
         <div class="headerDiv">
             <p>Assistente virtual</p>
-            <img src="assets/close-chatbot.svg" class="icon" height="10px" width="10px" alt="Fechar">
+            <img src="assets/close-chatbot.svg" class="icon" height="10" width="10" alt="Fechar">
         </div>
+            <ul>
+                <li></li>
+            </ul>
 
-        <article>
-
-        </article>
-
-        <input type="text" required>
+        <form action="send-msg">
+            <input id="send" type="text" required placeholder="Faça uma pergunta...">
+            <button type="submit">
+                <img src="assets/chatbot-send.svg" alt="send" height="24" width="24">
+            </button>
+        </form>
     </div>
+
 
 
     <script src="script.js"></script>

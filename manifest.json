@@ -31,6 +31,8 @@
         "assets/star-recomend.svg",
         "assets/acess-link-icon.svg",
         "assets/close-chatbot.svg",
+        "assets/chatbot-send.svg",
+        "assets/quest.svg","assets/like.svg","assets/deslike.svg",
         "styles/index.css",
         "data.js"
       ],
@@ -40,9 +42,13 @@
     }
   ],
   "content_scripts": [
-  {
-    "matches": ["<all_urls>"],
-    "js": ["content.js"]
-  }
-]
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
 }

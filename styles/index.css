@@ -343,9 +343,11 @@ body {
   z-index: 10000;
   padding: 10px;
   display: none;
-  display: flex;
+  /* /////////////////////////////////////////////////////////////////////////////////////// */
+  /* display: flex; */
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 5px;
 }
 
 .divChatbot .headerDiv {
@@ -354,22 +356,118 @@ body {
   justify-content: space-between;
 }
 
-.divChatbot .headerDiv h3 {
-  padding-left: 80px;
+.divChatbot .headerDiv p {
+  padding-left: 97px;
+  font-weight: 500;
+  font-size: 18px;
 }
 
-.divChatbot .headerDiv img {}
-
-.divChatbot article {
-  background-color: red;
-  height: 10px;
+.divChatbot .headerDiv img {
+  scale: 1.4;
+  cursor: pointer;
 }
 
-.divChatbot input {}
+
+.divChatbot ul {
+  display: flex;
+  /* background: red; */
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  gap: 10px;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  padding: 8px;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.divChatbot ul ::-webkit-scrollbar {
+  display: none;
+}
+
+.divChatbot ul li {
+  background-color: #1C1C5E;
+  color: white;
+  padding: 10px 5px;
+  width: 100%;
+}
+
+.divChatbot ul .gpt {
+  background-color: #F16421;
+  color: white;
+  padding: 10px 5px;
+  width: 100%;
+}
+
+.divChatbot form {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+
+.divChatbot form input::placeholder {
+  font-size: 14px;
+  color: #1E1E1E;
+}
+
+.divChatbot form input {
+  padding-left: 8px;
+  padding-bottom: 10px;
+  padding-top: 8px;
+  height: 36px;
+  background: #F6F6F6;
+  border: none;
+  width: 90%;
+}
+
+.divChatbot form input:focus {
+  outline: none !important;
+}
+
+.divChatbot form input {}
+
+.divChatbot form button {
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+  border: none;
+  object-fit: cover;
+  background: transparent;
+}
+
+.divChatbot form button img {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
 
 .closeButton {
   align-self: flex-end;
   margin-top: 10px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+
+
+/* //////////////////////////////////////////////////////////////////// */
+
+.insideCards {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.insideCards button {
+  border: none;
+  background-color: transparent;
+}
+
+.insideCards button img {}
+.new-style{
+        display: flex;
+        align-items: center;
+        gap: 10px;
 }

@@ -36,7 +36,7 @@ const toggleDiv = () => {
     let existingDiv = document.querySelector('#my-extension-div');
 
     if (!existingDiv) {
-        // Criar a div se ainda não existir
+        // Criar a div principal
         existingDiv = document.createElement('div');
         existingDiv.id = 'my-extension-div';
         existingDiv.className = 'divChatbot'; // Adiciona a classe CSS
@@ -45,15 +45,15 @@ const toggleDiv = () => {
         const headerDiv = document.createElement('div');
         headerDiv.className = 'headerDiv';
 
-        const headerText = document.createElement('h3');
+        const headerText = document.createElement('p');
         headerText.textContent = 'Assistente virtual';
 
         const closeButton = document.createElement('img');
         closeButton.src = chrome.runtime.getURL('assets/close-chatbot.svg');
         closeButton.alt = 'Fechar';
         closeButton.className = 'icon';
-        closeButton.width = 11;
-        closeButton.height = 11;
+        closeButton.width = 10;
+        closeButton.height = 10;
 
         closeButton.addEventListener('click', () => {
             existingDiv.style.display = 'none'; // Esconde a div
@@ -62,18 +62,58 @@ const toggleDiv = () => {
         headerDiv.appendChild(headerText);
         headerDiv.appendChild(closeButton);
 
-        // Conteúdo do artigo
-        const article = document.createElement('article');
+        // Lista de mensagens
+        const messageList = document.createElement('ul');
 
-        // Input para interação
+        // Formulário com input e botão de envio
+        const form = document.createElement('form');
+        form.action = 'send-msg';
+
         const inputField = document.createElement('input');
+        inputField.id = 'send';
         inputField.type = 'text';
         inputField.required = true;
+        inputField.placeholder = 'Faça uma pergunta...';
+
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+
+        const sendIcon = document.createElement('img');
+        sendIcon.src = chrome.runtime.getURL('assets/chatbot-send.svg');
+        sendIcon.alt = 'send';
+        sendIcon.height = 24;
+        sendIcon.width = 24;
+
+        submitButton.appendChild(sendIcon);
+        form.appendChild(inputField);
+        form.appendChild(submitButton);
+
+        // Adicionar evento ao formulário
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Evita o recarregamento da página
+
+            const inputValue = inputField.value.trim();
+            if (inputValue) {
+                // Enviar mensagem ao background.js
+                chrome.runtime.sendMessage(
+                    { action: 'processInput', value: inputValue },
+                    (response) => {
+                        if (chrome.runtime.lastError) {
+                            console.error('Erro ao enviar mensagem:', chrome.runtime.lastError);
+                        } else {
+                            console.log('Resposta do background.js:', response);
+                        }
+                    }
+                );
+
+                inputField.value = ''; // Limpa o campo após envio
+            }
+        });
 
         // Montar a div principal
         existingDiv.appendChild(headerDiv);
-        existingDiv.appendChild(article);
-        existingDiv.appendChild(inputField);
+        existingDiv.appendChild(messageList);
+        existingDiv.appendChild(form);
         document.body.appendChild(existingDiv);
 
         // console.log("Div criada com classe .divChatbot");
@@ -82,6 +122,7 @@ const toggleDiv = () => {
         existingDiv.style.display = existingDiv.style.display === 'none' ? 'block' : 'none';
     }
 };
+
 
 
 const addPersistentButton = () => {
@@ -259,7 +300,47 @@ const addUlAfterRecMD = () => {
     }
 };
 
+const addUlAfterRowMB12 = () => {
+    const recMDElement = document.querySelector('.row .row .mb-2 .col-md-2');
+    recMDElement.className = 'new-style'; // Adiciona a classe CSS
 
+    if (recMDElement) {
+        recMDElement.insertAdjacentHTML('afterbegin', `
+            <div class='insideCards'>       
+            
+            <button type="submit" >
+            <img src="${chrome.runtime.getURL('assets/quest.svg')}" 
+            class="icon" 
+            height="16px" 
+            width="16px" 
+            alt="Fechar">
+            </button>
+
+                  <button type="submit" >
+            <img src="${chrome.runtime.getURL('assets/like.svg')}" 
+            class="icon" 
+            height="16px" 
+            width="16px" 
+            alt="Fechar">
+            </button>
+
+                  <button type="submit" >
+            <img src="${chrome.runtime.getURL('assets/deslike.svg')}" 
+            class="icon" 
+            height="16px" 
+            width="16px" 
+            alt="Fechar">
+            </button>
+
+            </div>
+        `);
+
+
+        console.log('Criado com sucesso');
+    } else {
+        console.error('Elemento <div class="recMD"> não encontrado para adicionar a <ul>.');
+    }
+};
 
 // Injeta os scripts e estilos ao atualizar abas
 chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
@@ -271,6 +352,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
         injectResource(tabId, addRecommendationsToDiv); // Adiciona a div recMD
         injectResource(tabId, addUlAfterRecMD); // Adiciona a ul após a div recMD
 
+        injectResource(tabId, addUlAfterRowMB12); // Adiciona a ul após a div recMD
 
     }
 });
@@ -285,6 +367,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
         injectResource(tab.id, addRecommendationsToDiv); // Adiciona a div recMD
         injectResource(tab.id, addUlAfterRecMD); // Adiciona a ul após a div recMD
 
+        injectResource(tab.id, addUlAfterRowMB12); // Adiciona a ul após a div recMD
 
     }
 });
@@ -295,6 +378,24 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         // Responde ao content.js com o valor recebido
         sendResponse({ status: 'success', receivedValue: message.value });
+    }
+    if (message.action === 'processInput') {
+        const userInput = message.value;
+        // console.log('Valor recebido do input:', userInput);
+
+        // Enviar mensagem de volta ao content.js
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            if (tabs[0]) {
+                chrome.tabs.sendMessage(tabs[0].id, {
+                    action: 'insertToList',
+                    value: userInput,
+                    // para trocar o usuario e gpt
+                    status: 'user'
+                });
+            }
+        });
+
+        sendResponse({ status: 'success', response: userInput });
     }
 });
 
