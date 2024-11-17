@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Illuma",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "hello_extensions.png"
+  },
+  "icons": {
+    "16": "hello_extensions.png",
+    "32": "hello_extensions.png",
+    "48": "hello_extensions.png",
+    "128": "hello_extensions.png"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/btn-fixed.svg",
+        "assets/star-recomend.svg",
+        "assets/acess-link-icon.svg",
+        "assets/close-chatbot.svg",
+        "styles/index.css",
+        "data.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_scripts": [
+  {
+    "matches": ["<all_urls>"],
+    "js": ["content.js"]
+  }
+]
+}

@@ -1,13 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illuma</title>
+    <link rel="stylesheet" href="styles/index.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="form-container">
+        <header>
+            <h2>Faça seu cadastro</h2>
+            <button id="close-button">
+                <img src="assets/cloese-header.png" class="icon" height="10px" width="10px" alt="Fechar">
+            </button>
+        </header>
+
+        <main class="flex justify-center">
+            <h3>Digite o seu email para criarmos a sua conta.</h3>
+            <form id="register-form">
+                <input class="inputEmail" type="email" id="email" required placeholder="Email" />
+
+                <div>
+                    <input type="checkbox" id="check">
+                    <label for="check">Receber artigos recomendados por email</label>
+                </div>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- <ul class="recomends-extension">
+        <li>
+            <h5>Autores: ${element.name}</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, nobis quam doloremque in sed sit harum
+                minus reprehenderit dolor eligendi non officiis laborum ad rerum quasi optio molestiae veniam eum?  ${element.description}</p>
+            <h6>Publicado em :  ${element.publish}</h6>
+            <a href="${element.html_url}" target="_blank">
+                <img src="assets/acess-link-icon.svg" class="icon" height="10px" width="10px" alt="Fechar">
+                Acessar
+            </a>
+        </li>
+    </ul> -->
+
+
+    <div id="my-extension-div">
+        <div class="headerDiv">
+            <p>Assistente virtual</p>
+            <img src="assets/close-chatbot.svg" class="icon" height="10px" width="10px" alt="Fechar">
+        </div>
+
+        <article>
+
+        </article>
+
+        <input type="text" required>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
 </html>
