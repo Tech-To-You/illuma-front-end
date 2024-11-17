@@ -168,6 +168,8 @@ body {
 
 /* ////////////////////////////////////////////////////////////////////// */
 
+/* CARDS */
+
 .fixed {
   background-color: #1C1C5E;
   height: 70px;
@@ -427,7 +429,6 @@ body {
   outline: none !important;
 }
 
-.divChatbot form input {}
 
 .divChatbot form button {
   position: absolute;
@@ -465,7 +466,6 @@ body {
   background-color: transparent;
 }
 
-.insideCards button img {}
 .new-style{
         display: flex;
         align-items: center;

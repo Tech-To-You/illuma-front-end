@@ -1,6 +1,3 @@
-// const body = document.querySelector('body');
-
-
 // Certifique-se de que o script só será executado após o DOM estar carregado
 document.addEventListener('DOMContentLoaded', () => {
   // Botão de fechar
@@ -46,32 +43,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 });
-
-
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-// function handteMoaat() {
-//     const button = document.querySelector('#showMessage')
-//     const modalContainer = document.querySelector('#modalContainer')
-
-//     button.addEventListener('click', function () {
-//         modalContainer.showModal()
-//         // modalContainer.show()
-
-//         closeModal()
-//     })
-// }
-
-// function closeModal() {
-//     const button = document.querySelector('#closeModal')
-//     const modalContainer = document.querySelector('#modalContainer')
-
-//     button.addEventListener('click',function(){
-//         modalContainer.close()
-//     })
-// }
-// handteMoaat()

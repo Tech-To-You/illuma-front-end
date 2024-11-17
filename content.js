@@ -1,21 +1,3 @@
-// Verifica se o botão já foi adicionado
-// if (!document.querySelector('#my-extension-button')) {
-//     const button = document.createElement('button');
-
-//     button.addEventListener('click', function () {
-//         console.log("click no CONTENT")
-//     })
-
-//      // Evento de clique no botão
-//     //  button.addEventListener('click', () => {
-//     //     console.log('Clique no botão no content.js!');
-//     //     chrome.runtime.sendMessage({ action: 'buttonClicked' }, (response) => {
-//     //         console.log('Resposta do background.js:', response);
-//     //     });
-//     // });
-
-// }
-
 // /////////////// input SEARCH
 // Verifica se o elemento com o ID existe na página
 const inputElement = document.querySelector('#input-busca');

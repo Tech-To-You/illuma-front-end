@@ -146,13 +146,6 @@ const addPersistentButton = () => {
     })
 };
 
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//     if (message.action === 'buttonClicked') {
-//         console.log('Mensagem recebida do botão fixo!');
-//         sendResponse({ status: 'success' });
-//     }
-// });
-
 
 
 
@@ -401,63 +394,3 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 
 
-
-
-// /////////////////////////////////////////////////////////////////////////////////////
-
-
-
-// /////////////////////////////////////////////////////////////////////////////////////
-
-
-// // Função para carregar o data.js dinamicamente
-// const loadData = async () => {
-//     const dataUrl = chrome.runtime.getURL('data.js');
-//     const module = await import(dataUrl);
-//     return module.insertedValues;
-// };
-
-// // Função para renderizar os valores da lista na UL
-// const renderRecommendations = async () => {
-//     const data = await loadData();
-
-//     const ulElement = document.querySelector('.recomends-extension');
-//     if (!ulElement) {
-//         console.error('Elemento <ul class="recomends-extension"> não encontrado.');
-//         return;
-//     }
-
-//     data.forEach((element) => {
-//         ulElement.insertAdjacentHTML('beforeend', `
-//             <li>
-//                 <h5>Autores: ${element.name}</h5>
-//                 <p>${element.description}</p>
-//                 <h6>Publicado em: ${element.publish}</h6>
-//                 <a href="${element.html_url}" target="_blank">
-//                     <img src="${chrome.runtime.getURL('assets/acess-link-icon.svg')}"
-//                          class="icon"
-//                          height="10px"
-//                          width="10px"
-//                          alt="Acessar">
-//                     Acessar
-//                 </a>
-//             </li>
-//         `);
-//     });
-
-//     console.log('Recomendações renderizadas com sucesso.');
-// };
-
-// // Listener para injetar a lista de recomendações ao atualizar abas
-// chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
-//     if (changeInfo.status === 'complete') {
-//         injectResource(tabId, renderRecommendations); // Renderiza a lista na UL
-//     }
-// });
-
-// // Injeta as recomendações na aba ativa ao iniciar
-// chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
-//     if (tab && isValidUrl(tab.url)) {
-//         injectResource(tab.id, renderRecommendations); // Renderiza a lista na UL
-//     }
-// });
